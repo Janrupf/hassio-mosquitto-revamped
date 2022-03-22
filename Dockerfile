@@ -34,4 +34,3 @@ RUN rm -fr \
 
 # Copy rootfs
 COPY rootfs /
-
