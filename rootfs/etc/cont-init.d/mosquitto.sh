@@ -74,11 +74,24 @@ cafile="/ssl/$(bashio::config 'cafile')"
 if bashio::fs.file_exists "${certfile}" \
   && bashio::fs.file_exists "${keyfile}";
 then
+  mkdir /tmp/mosquitto-certs
+  cp "${keyfile}" /tmp/mosquitto-certs/server.key
+  cp "${certfile}" /tmp/mosquitto-certs/server.cert
+
   bashio::log.info "Certificates found: SSL is available"
   ssl="true"
+  keyfile="/tmp/mosquitto-certs/server.key"
+  certfile="/tmp/mosquitto-certs/server.cert"
   if ! bashio::fs.file_exists "${cafile}"; then
-    cafile="${certfile}"
+    cafile="/tmp/mosquitto-certs/server.cert"
+  else
+    cp "${cafile}" /tmp/mosquitto-certs/ca.cert
+    cafile="/tmp/mosquitto-certs/server.cert"
   fi
+
+  chown mosquitto:mosquitto "${keyfile}"
+  chown mosquitto:mosquitto "${certfile}"
+  chown mosquitto:mosquitto "${cafile}"
 else
   bashio::log.info "SSL is not enabled"
   ssl="false"
