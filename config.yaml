@@ -24,6 +24,7 @@ options:
   keyfile: privkey.pem
   logins: []
   require_certificate: false
+  debug: false
 ports:
   1883/tcp: 1883
   1884/tcp: 1884
