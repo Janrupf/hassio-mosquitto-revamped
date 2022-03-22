@@ -37,6 +37,7 @@ ports_description:
 schema:
   cafile: str?
   certfile: str
+  debug: bool
   customize:
     active: bool
     folder: str

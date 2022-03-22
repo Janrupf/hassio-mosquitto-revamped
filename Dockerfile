@@ -16,7 +16,6 @@ RUN apk add --no-cache \
     openssl-dev \
     cmake
 RUN git clone --depth 1 -b "v${MOSQ_EXT_AUTH_VERSION}" https://github.com/Janrupf/mosq-ext-auth
-COPY mosq-ext-auth /usr/src/mosq-ext-auth
 WORKDIR /usr/src/mosq-ext-auth/build
 RUN cmake .. -DCMAKE_BUILD_TYPE=Release
 RUN cmake --build . --parallel

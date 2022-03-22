@@ -1,7 +1,11 @@
 protocol mqtt
 # user root
 log_dest stdout
+{{ if .debug }}
 log_type all
+{{ else }}
+log_type info
+{{ end }}
 persistence true
 persistence_location /data/
 
