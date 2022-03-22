@@ -4,7 +4,7 @@ log_dest stdout
 {{ if .debug }}
 log_type all
 {{ else }}
-log_type info
+log_type information
 {{ end }}
 persistence true
 persistence_location /data/
